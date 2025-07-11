@@ -1,0 +1,10 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "parameters": {
+    "webAppName": { "value": "arn-test-mest-demo-webapp-unique-120" },
+    "location": { "value": "australiaeast" },
+    // "sqlServerName": { "value": "arn-hello-demosqlserveruniq-120" },
+    // "sqlAdmin": { "value": "adminuser" },
+    // "sqlPassword": { "value": "YourP@ssw0rd123" }
+  }
+}

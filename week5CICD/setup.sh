@@ -1,4 +1,6 @@
 #!/bin/bash
+
+# This script sets up the environment for the week 5 exercises.
 set -e
 
 source .env
@@ -9,7 +11,9 @@ echo "$ADMIN_TOKEN" | gh auth login --with-token --hostname github.com
 SUBSCRIPTION_ID=$(az account show --query id -o tsv)
 TENANT_ID=$(az account show --query tenantId -o tsv)
 
-SP_NAME="gh-actions-sp"
+SP_NAME="gh-actions-sp$RANDOM"
+echo "export SP_NAME=$SP_NAME" >> .env
+
 APP_ID=$(az ad sp list --display-name "$SP_NAME" --query "[0].appId" -o tsv || true)
 
 if [[ -z "$APP_ID" ]]; then
@@ -35,7 +39,7 @@ echo "export RG_NAME=$RG_NAME" >> .env # store RG_NAME in .env
 
 az provider register --namespace Microsoft.Web
 
-az group create --name "$RG_NAME" --location "$LOCATION
+az group create --name "$RG_NAME" --location "$LOCATION"
 
 AZURE_CREDENTIALS=$(cat <<EOF
 {
